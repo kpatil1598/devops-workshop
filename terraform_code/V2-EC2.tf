@@ -1,14 +1,14 @@
 provider "aws" {
   region = "us-east-1"
-  access_key = "AKIARY7CNIPSRAGXSRSP"
-  secret_key = "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"
+  access_key = var.access_key
+  secret_key = var.secret_key
 }
 
 resource "aws_instance" "demo_server" {
     ami = "ami-0005e0cfe09cc9050"
     instance_type = "t2.micro"
     key_name = "devops_project"
-    security_groups = [ demo_sg ]
+    vpc_security_group_ids = [ aws_security_group.demo_sg.id ]
 }
 
 resource "aws_security_group" "demo_sg" {
@@ -20,10 +20,15 @@ resource "aws_security_group" "demo_sg" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = [0.0.0.0/0]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   tags = {
-    Name = "ssh=access"
+    Name = "ssh-access"
   }
+}
+
+output "public_ip" {
+  value       = aws_instance.demo_server.public_ip
+  description = "public_ip address"
 }
