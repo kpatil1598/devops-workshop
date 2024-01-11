@@ -2,4 +2,4 @@
 **/*.tfstate.*
 **/.terraform/*
 **/.terraform.lock.hcl
-./terraform_code/variables.tf
+**/terraform_code/variables.tf
