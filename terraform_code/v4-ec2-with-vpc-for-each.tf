@@ -29,6 +29,14 @@ resource "aws_security_group" "demo_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
   }
 
+   egress {
+     description      = "outgoing trafic"
+     from_port        = 0
+     to_port          = 0
+     protocol         = "-1"
+     cidr_blocks      = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "ssh-access"
   }
