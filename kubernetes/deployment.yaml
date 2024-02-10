@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: valaxy-rtp
-  namespace: valaxy
+  name: zetos-rtp
+  namespace: zetos
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app:  valaxy-rtp
+      app:  zetos-rtp
   template:
     metadata:
       labels:
-        app:  valaxy-rtp
+        app:  zetos-rtp
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name:  valaxy-rtp
-        image: valaxy02.jfrog.io/valaxy-docker-local/ttrend:2.0.2
+      - name:  zetos-rtp
+        image: zetos.jfrog.io/zetos-docker-local/ttrend:2.1.2
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
