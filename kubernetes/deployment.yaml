@@ -14,7 +14,7 @@ spec:
         app:  zetos-rtp
     spec:
       imagePullSecrets:
-      - name: regcred
+      - name: cred
       containers:
       - name:  zetos-rtp
         image: zetos.jfrog.io/zetos-docker-local/ttrend:2.1.2
